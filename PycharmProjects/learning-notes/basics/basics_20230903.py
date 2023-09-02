@@ -1,2 +1,2 @@
-def add(a, b):
-    return a + b
+with open('sample.txt', 'w') as f:
+    f.write('Test')
