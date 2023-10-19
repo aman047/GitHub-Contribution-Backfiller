@@ -1,2 +1,2 @@
-with open('sample.txt', 'w') as f:
-    f.write('Test')
+for i in range(5):
+    print(i)
