@@ -1,4 +1,2 @@
-try:
-    x = int(input())
-except Exception as e:
-    print(e)
+def add(a, b):
+    return a + b
