@@ -1,4 +1,2 @@
-try:
-    x = int(input())
-except Exception as e:
-    print(e)
+with open('sample.txt', 'w') as f:
+    f.write('Test')
