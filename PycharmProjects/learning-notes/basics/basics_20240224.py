@@ -1,2 +1,4 @@
-def hello():
-    print('Hello World!')
+try:
+    x = int(input())
+except Exception as e:
+    print(e)
