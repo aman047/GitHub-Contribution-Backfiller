@@ -3,62 +3,51 @@ import random
 import subprocess
 from datetime import datetime, timedelta
 
-# Configuration
-start_date = datetime(2023, 1, 1)
-end_date = datetime(2023, 12, 31)
-author_name = "Aman Jain"
-author_email = "amanjain0411@gmail.com"
-commit_msg_base = "Learning progress"
+# Topics and folders
+topics = {
+    "python": ["lambda_functions", "file_handling", "list_comprehension"],
+    "machine-learning": ["regression_vs_classification", "model_evaluation", "overfitting_underfitting"],
+    "data-science": ["data_cleaning", "eda", "feature_engineering"],
+    "sql": ["joins_cheatsheet", "window_functions", "groupby_having"],
+    "powerbi": ["creating_dashboards", "measures_vs_columns"],
+    "cloud": ["aws_ec2_s3", "gcp_bigquery", "cloud_intro"]
+}
 
-# File types to simulate realistic learning
-file_types = [
-    ".py", ".ipynb", ".md", ".html", ".css", ".sql", ".h5", ".csv", ".json", ".txt"
-]
+# Repo path
+repo_path = os.getcwd()
 
-# Simulated directories in the learning-notes repo
-directories = [
-    "Python", "Machine-Learning", "Deep-Learning", "Web-Dev", "SQL", "Notes", "Data"
-]
+# Date range
+start_date = datetime(2024, 6, 1)
+end_date = datetime(2025, 1, 5)
 
-# Set working directory to the repo (adjust if needed)
-repo_dir = os.path.abspath("learning-notes")
-os.makedirs(repo_dir, exist_ok=True)
-os.chdir(repo_dir)
+# Create folders
+for folder in topics:
+    folder_path = os.path.join(repo_path, folder)
+    os.makedirs(folder_path, exist_ok=True)
 
+# Generate commits
 current_date = start_date
-committed_dates = []
-
 while current_date <= end_date:
-    if random.random() < 0.75:  # ~75% chance to commit on a given day
-        # Random file path and content
-        dir_choice = random.choice(directories)
-        ext_choice = random.choice(file_types)
-        filename = f"{dir_choice}/log_{current_date.strftime('%j')}{ext_choice}"
-        os.makedirs(os.path.dirname(filename), exist_ok=True)
+    if random.random() < 0.65:  # 65% chance to commit on a day
+        commit_count = random.randint(1, 3)
+        for _ in range(commit_count):
+            topic_folder = random.choice(list(topics.keys()))
+            file_topic = random.choice(topics[topic_folder])
+            file_path = os.path.join(repo_path, topic_folder, f"{file_topic}.md")
 
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(f"Simulated work on {current_date.strftime('%Y-%m-%d')}")
+            with open(file_path, "a") as f:
+                f.write(f"# {file_topic.replace('_', ' ').title()}\n")
+                f.write(f"Learned about {file_topic.replace('_', ' ')} on {current_date.strftime('%d %b %Y')}.\n\n")
 
-        # Random time
-        hour = random.randint(9, 22)
-        minute = random.randint(0, 59)
-        second = random.randint(0, 59)
-        date_str = current_date.replace(hour=hour, minute=minute, second=second).isoformat()
+            # Format date for Git
+            date_str = current_date.strftime("%Y-%m-%dT%H:%M:%S")
+            env = os.environ.copy()
+            env["GIT_AUTHOR_DATE"] = date_str
+            env["GIT_COMMITTER_DATE"] = date_str
 
-        # Git add and commit
-        subprocess.run(["git", "add", filename])
-        subprocess.run([
-            "git", "commit",
-            f"--date={date_str}",
-            f"--author={author_name} <{author_email}>",
-            "-m", f"{commit_msg_base} on {current_date.strftime('%Y-%m-%d')}"
-        ])
-        committed_dates.append(current_date.strftime('%Y-%m-%d'))
+            subprocess.run(["git", "add", "."], cwd=repo_path)
+            subprocess.run(["git", "commit", "-m", f"Added notes on {file_topic.replace('_', ' ')}"], cwd=repo_path, env=env)
+    current_date += timedelta(days=1)
 
-    # Increment by 1 to 3 days
-    current_date += timedelta(days=random.randint(1, 3))
-
-# Final push
-subprocess.run(["git", "push", "origin", "main"])
-
-committed_dates[:10]  # Return first few commit dates for verification
+print("✅ Backdated commits created!")
+print("🚀 Now run: git push origin main")
