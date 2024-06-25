@@ -70,3 +70,6 @@ Learned about joins cheatsheet on 17 Dec 2024.
 # Joins Cheatsheet
 Learned about joins cheatsheet on 23 Jun 2024.
 
+# Joins Cheatsheet
+Learned about joins cheatsheet on 26 Jun 2024.
+
