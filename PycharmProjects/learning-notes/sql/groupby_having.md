@@ -46,3 +46,6 @@ Learned about groupby having on 12 Jun 2024.
 # Groupby Having
 Learned about groupby having on 18 Jun 2024.
 
+# Groupby Having
+Learned about groupby having on 01 Jul 2024.
+
