@@ -166,3 +166,6 @@ Learned about creating dashboards on 15 Jul 2024.
 # Creating Dashboards
 Learned about creating dashboards on 22 Jul 2024.
 
+# Creating Dashboards
+Learned about creating dashboards on 24 Jul 2024.
+
