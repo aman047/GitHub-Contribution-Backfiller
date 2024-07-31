@@ -49,3 +49,6 @@ Learned about eda on 29 Jun 2024.
 # Eda
 Learned about eda on 14 Jul 2024.
 
+# Eda
+Learned about eda on 01 Aug 2024.
+
