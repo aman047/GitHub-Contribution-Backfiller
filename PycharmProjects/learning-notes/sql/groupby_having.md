@@ -148,3 +148,6 @@ Learned about groupby having on 15 Jul 2024.
 # Groupby Having
 Learned about groupby having on 24 Jul 2024.
 
+# Groupby Having
+Learned about groupby having on 11 Aug 2024.
+
