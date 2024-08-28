@@ -82,3 +82,6 @@ Learned about gcp bigquery on 17 Aug 2024.
 # Gcp Bigquery
 Learned about gcp bigquery on 18 Aug 2024.
 
+# Gcp Bigquery
+Learned about gcp bigquery on 29 Aug 2024.
+
