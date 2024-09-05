@@ -19,3 +19,6 @@ Learned about regression vs classification on 30 Jul 2024.
 # Regression Vs Classification
 Learned about regression vs classification on 21 Aug 2024.
 
+# Regression Vs Classification
+Learned about regression vs classification on 06 Sep 2024.
+
