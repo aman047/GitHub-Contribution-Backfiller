@@ -214,3 +214,6 @@ Learned about measures vs columns on 27 Aug 2024.
 # Measures Vs Columns
 Learned about measures vs columns on 14 Sep 2024.
 
+# Measures Vs Columns
+Learned about measures vs columns on 20 Sep 2024.
+
