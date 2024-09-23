@@ -184,3 +184,6 @@ Learned about aws ec2 s3 on 12 Sep 2024.
 # Aws Ec2 S3
 Learned about aws ec2 s3 on 17 Sep 2024.
 
+# Aws Ec2 S3
+Learned about aws ec2 s3 on 24 Sep 2024.
+
