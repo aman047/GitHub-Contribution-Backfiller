@@ -28,3 +28,6 @@ Learned about overfitting underfitting on 04 Sep 2024.
 # Overfitting Underfitting
 Learned about overfitting underfitting on 12 Sep 2024.
 
+# Overfitting Underfitting
+Learned about overfitting underfitting on 02 Oct 2024.
+
