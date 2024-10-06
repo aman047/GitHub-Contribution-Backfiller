@@ -157,3 +157,6 @@ Learned about cloud intro on 27 Sep 2024.
 # Cloud Intro
 Learned about cloud intro on 01 Oct 2024.
 
+# Cloud Intro
+Learned about cloud intro on 07 Oct 2024.
+
