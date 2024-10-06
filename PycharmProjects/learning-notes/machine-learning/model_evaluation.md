@@ -103,3 +103,6 @@ Learned about model evaluation on 28 Sep 2024.
 # Model Evaluation
 Learned about model evaluation on 02 Oct 2024.
 
+# Model Evaluation
+Learned about model evaluation on 07 Oct 2024.
+
