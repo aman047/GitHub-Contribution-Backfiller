@@ -172,3 +172,6 @@ Learned about feature engineering on 17 Sep 2024.
 # Feature Engineering
 Learned about feature engineering on 24 Sep 2024.
 
+# Feature Engineering
+Learned about feature engineering on 08 Oct 2024.
+
