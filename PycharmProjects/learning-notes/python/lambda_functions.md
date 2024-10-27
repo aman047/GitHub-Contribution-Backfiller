@@ -28,3 +28,6 @@ Learned about lambda functions on 12 Oct 2024.
 # Lambda Functions
 Learned about lambda functions on 13 Oct 2024.
 
+# Lambda Functions
+Learned about lambda functions on 28 Oct 2024.
+
