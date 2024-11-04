@@ -46,3 +46,6 @@ Learned about window functions on 09 Oct 2024.
 # Window Functions
 Learned about window functions on 13 Oct 2024.
 
+# Window Functions
+Learned about window functions on 05 Nov 2024.
+
