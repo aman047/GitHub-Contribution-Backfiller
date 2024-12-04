@@ -22,3 +22,6 @@ Learned about groupby having on 02 Oct 2024.
 # Groupby Having
 Learned about groupby having on 12 Oct 2024.
 
+# Groupby Having
+Learned about groupby having on 05 Dec 2024.
+
