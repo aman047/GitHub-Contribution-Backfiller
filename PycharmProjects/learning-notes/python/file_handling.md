@@ -181,3 +181,6 @@ Learned about file handling on 27 Oct 2024.
 # File Handling
 Learned about file handling on 07 Dec 2024.
 
+# File Handling
+Learned about file handling on 22 Dec 2024.
+
