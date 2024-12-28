@@ -175,3 +175,6 @@ Learned about groupby having on 15 Nov 2024.
 # Groupby Having
 Learned about groupby having on 09 Dec 2024.
 
+# Groupby Having
+Learned about groupby having on 29 Dec 2024.
+
