@@ -22,3 +22,6 @@ Learned about model evaluation on 26 Nov 2024.
 # Model Evaluation
 Learned about model evaluation on 23 Dec 2024.
 
+# Model Evaluation
+Learned about model evaluation on 02 Jan 2025.
+
