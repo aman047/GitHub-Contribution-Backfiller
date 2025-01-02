@@ -1,2 +1,2 @@
-def hello():
-    print('Hello World!')
+with open('sample.txt', 'w') as f:
+    f.write('Test')

@@ -1,90 +1,49 @@
 import os
-import json
 import subprocess
+import random
 from datetime import datetime, timedelta
 
-base_dir = "learning-notes"
-
-notebooks = {
-    "Python/loops.ipynb": {
-        "cells": [
-            {
-                "cell_type": "markdown",
-                "metadata": {},
-                "source": ["# Python Loops\nUnderstanding `for` and `while` loops."]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": ["for i in range(5):\n    print(i)"]
-            }
-        ],
-        "metadata": {},
-        "nbformat": 4,
-        "nbformat_minor": 2
-    },
-    "Machine-Learning/regression.ipynb": {
-        "cells": [
-            {
-                "cell_type": "markdown",
-                "metadata": {},
-                "source": ["# Linear Regression\nUsing scikit-learn to build a basic regression model."]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": [
-                    "from sklearn.linear_model import LinearRegression\n",
-                    "from sklearn.model_selection import train_test_split\n",
-                    "from sklearn.datasets import make_regression\n\n",
-                    "X, y = make_regression(n_samples=100, n_features=1, noise=0.1)\n",
-                    "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n",
-                    "model = LinearRegression()\n",
-                    "model.fit(X_train, y_train)\n",
-                    "print(model.score(X_test, y_test))"
-                ]
-            }
-        ],
-        "metadata": {},
-        "nbformat": 4,
-        "nbformat_minor": 2
-    }
-}
-
-# Git Config
+# === Config ===
+start_date = datetime(2023, 1, 1)
+end_date = datetime(2023, 7, 31)
 author_name = "Aman Jain"
 author_email = "amanjain0411@gmail.com"
+commit_msg = "Learning progress"
+file_extensions = ['.py', '.md', '.html', '.css', '.json', '.txt', '.h5']
 
-# Set the 2023 range
-start_date = datetime(2023, 1, 1)
-end_date = datetime(2023, 12, 31)
+# === Generator ===
 current_date = start_date
 
 while current_date <= end_date:
-    # Add date-based folder name for realism
-    folder_suffix = current_date.strftime("%Y-%m-%d")
-    for rel_path, content in notebooks.items():
-        full_path = os.path.join(base_dir, folder_suffix, rel_path)
-        os.makedirs(os.path.dirname(full_path), exist_ok=True)
-        with open(full_path, "w", encoding="utf-8") as f:
-            json.dump(content, f, indent=2)
+    # Randomly choose whether to commit on this day (~50% chance)
+    if random.random() < 0.5:
+        num_commits_today = random.randint(1, 2)  # 1-2 commits per day
 
-        # Git add & commit for each file
-        date_str = current_date.strftime("%Y-%m-%dT12:00:00")
-        subprocess.run(["git", "add", full_path])
-        subprocess.run([
-            "git", "commit",
-            f"--date={date_str}",
-            f"--author={author_name} <{author_email}>",
-            "-m", f"Added notebook {rel_path} on {current_date.strftime('%Y-%m-%d')}"
-        ])
+        for _ in range(num_commits_today):
+            ext = random.choice(file_extensions)
+            filename = f"note_{current_date.strftime('%Y%m%d')}_{random.randint(100,999)}{ext}"
 
-    current_date += timedelta(days=2)
+            # Create dummy content
+            with open(filename, "w") as f:
+                f.write(f"Commit on {current_date.strftime('%Y-%m-%d')} at {datetime.now().time()}")
 
-# One final push
+            commit_time = current_date + timedelta(
+                hours=random.randint(9, 20),
+                minutes=random.randint(0, 59)
+            )
+            commit_date_str = commit_time.strftime("%Y-%m-%dT%H:%M:%S")
+
+            # Git add and commit
+            subprocess.run(["git", "add", filename])
+            subprocess.run([
+                "git", "commit",
+                f"--date={commit_date_str}",
+                f"--author={author_name} <{author_email}>",
+                "-m", f"{commit_msg} on {commit_time.strftime('%Y-%m-%d %H:%M')}"
+            ])
+
+    # Move to next day
+    current_date += timedelta(days=1)
+
+# Final push
 subprocess.run(["git", "push", "origin", "main"])
-print("✅ Notebooks created and committed for 2023.")

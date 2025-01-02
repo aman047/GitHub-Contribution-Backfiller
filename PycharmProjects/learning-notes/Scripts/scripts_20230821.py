@@ -1,4 +1,2 @@
-try:
-    x = int(input())
-except Exception as e:
-    print(e)
+for i in range(5):
+    print(i)

@@ -17,8 +17,8 @@ topics = {
 repo_path = os.getcwd()
 
 # Date range
-start_date = datetime(2024, 6, 1)
-end_date = datetime(2025, 1, 5)
+start_date = datetime(2025, 1, 1)
+end_date = datetime(2025, 3, 11)
 
 # Create folders
 for folder in topics:
