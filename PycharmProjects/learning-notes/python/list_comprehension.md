@@ -145,3 +145,6 @@ Learned about list comprehension on 28 Dec 2024.
 # List Comprehension
 Learned about list comprehension on 01 Jan 2025.
 
+# List Comprehension
+Learned about list comprehension on 19 Jan 2025.
+
