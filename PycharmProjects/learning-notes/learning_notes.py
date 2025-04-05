@@ -3,74 +3,62 @@ import random
 import subprocess
 from datetime import datetime, timedelta
 
-# ----- CONFIG -----
-start_date = datetime(2023, 7, 15)
-end_date = datetime(2024, 4, 6)
-total_commits = 90  # Spread realistically
+# Configuration
+start_date = datetime(2023, 1, 1)
+end_date = datetime(2023, 12, 31)
+author_name = "Aman Jain"
+author_email = "amanjain0411@gmail.com"
+commit_msg_base = "Learning progress"
 
-folders_and_files = {
-    "Python": {
-        "variables.md": "# Python Variables\nVariables store data...",
-        "loops.ipynb": '{"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# Python Loops\\nUsing for and while loops..."]}],"metadata": {}, "nbformat": 4, "nbformat_minor": 2}',
-        "decorators.md": "# Decorators in Python\nFunctions that modify functions...",
-        "oop_basics.md": "# OOP in Python\nClasses and Objects explained..."
-    },
-    "SQL": {
-        "joins.md": "# SQL Joins\nINNER, LEFT, RIGHT, and FULL joins...",
-        "groupby.md": "# GROUP BY in SQL\nSummarizing data by groups...",
-        "window_functions.md": "# SQL Window Functions\nUsing OVER() and PARTITION BY..."
-    },
-    "Machine-Learning": {
-        "regression.ipynb": '{"cells": [{"cell_type": "markdown", "metadata": {}, "source": ["# Linear Regression\\nBasic example using sklearn..."]}],"metadata": {}, "nbformat": 4, "nbformat_minor": 2}',
-        "decision_tree.md": "# Decision Trees\nSupervised learning trees...",
-        "sklearn_pipeline.md": "# Sklearn Pipelines\nPreprocessing + Model chaining..."
-    },
-    "PowerBI-Excel": {
-        "powerbi_vs_excel.md": "# Power BI vs Excel\nWhen to use what...",
-        "pivot_tables.md": "# Pivot Tables\nSummarize Excel data smartly..."
-    },
-    "Cloud": {
-        "gcp_cheatsheet.md": "# GCP Cheat Sheet\nCompute, Storage, BigQuery...",
-        "aws_services.md": "# AWS Services\nEC2, S3, Lambda basics..."
-    },
-    "Career": {
-        "resume_tips.md": "# Resume Tips\nMake your profile shine...",
-        "data_analytics_roadmap.md": "# Roadmap\nStep-by-step to become a data analyst..."
-    }
-}
+# File types to simulate realistic learning
+file_types = [
+    ".py", ".ipynb", ".md", ".html", ".css", ".sql", ".h5", ".csv", ".json", ".txt"
+]
 
-readme_text = "# Learning Notes 📒\nA curated journey through Python, SQL, Machine Learning, Cloud & Analytics."
+# Simulated directories in the learning-notes repo
+directories = [
+    "Python", "Machine-Learning", "Deep-Learning", "Web-Dev", "SQL", "Notes", "Data"
+]
 
-# ----- CREATE FOLDERS & FILES -----
-os.makedirs("learning-notes", exist_ok=True)
-os.chdir("learning-notes")
+# Set working directory to the repo (adjust if needed)
+repo_dir = os.path.abspath("learning-notes")
+os.makedirs(repo_dir, exist_ok=True)
+os.chdir(repo_dir)
 
-for folder, files in folders_and_files.items():
-    os.makedirs(folder, exist_ok=True)
-    for file, content in files.items():
-        file_path = os.path.join(folder, file)
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(content)
+current_date = start_date
+committed_dates = []
 
-with open("README.md", "w", encoding="utf-8") as f:
-    f.write(readme_text)
+while current_date <= end_date:
+    if random.random() < 0.75:  # ~75% chance to commit on a given day
+        # Random file path and content
+        dir_choice = random.choice(directories)
+        ext_choice = random.choice(file_types)
+        filename = f"{dir_choice}/log_{current_date.strftime('%j')}{ext_choice}"
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-# ----- GENERATE COMMIT DATES -----
-date_range = (end_date - start_date).days
-chosen_dates = sorted(random.sample(range(date_range), total_commits))
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(f"Simulated work on {current_date.strftime('%Y-%m-%d')}")
 
-# ----- GIT BACKDATED COMMITS -----
-for i, day_offset in enumerate(chosen_dates):
-    commit_date = start_date + timedelta(days=day_offset)
-    dummy_file = f".log{i}.txt"
-    with open(dummy_file, "w") as f:
-        f.write(f"Log {i} for {commit_date.date()}\n")
+        # Random time
+        hour = random.randint(9, 22)
+        minute = random.randint(0, 59)
+        second = random.randint(0, 59)
+        date_str = current_date.replace(hour=hour, minute=minute, second=second).isoformat()
 
-    subprocess.run(["git", "add", "."], check=True)
-    env = os.environ.copy()
-    env["GIT_COMMITTER_DATE"] = commit_date.strftime("%Y-%m-%dT12:00:00")
-    subprocess.run(["git", "commit", "-m", f"Learning progress on {commit_date.date()}", "--date",
-                    commit_date.strftime("%Y-%m-%dT12:00:00")], check=True, env=env)
+        # Git add and commit
+        subprocess.run(["git", "add", filename])
+        subprocess.run([
+            "git", "commit",
+            f"--date={date_str}",
+            f"--author={author_name} <{author_email}>",
+            "-m", f"{commit_msg_base} on {current_date.strftime('%Y-%m-%d')}"
+        ])
+        committed_dates.append(current_date.strftime('%Y-%m-%d'))
 
-# ----- PUSH TO REMOTE -----
+    # Increment by 1 to 3 days
+    current_date += timedelta(days=random.randint(1, 3))
+
+# Final push
 subprocess.run(["git", "push", "origin", "main"])
+
+committed_dates[:10]  # Return first few commit dates for verification
